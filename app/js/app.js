@@ -2,8 +2,7 @@ import $ from 'jquery'
 window.jQuery = $
 window.$ = $
 
-// // Import vendor jQuery plugin example (not module)
-// require('~/app/libs/mmenu/dist/mmenu.js')
+import Inputmask from "inputmask"
 
 function init() {
 
@@ -32,7 +31,10 @@ function init() {
 			aboutDateTop    = aboutDate.offset().top;
 
 	let sPosterConstructions    = $('.s-poster-constructions'),
-			sPosterConstructionsTop = sPosterConstructions.offset().top;
+			sPosterConstructionsTop = sPosterConstructions.offset().top,
+			sClients        	      = $('.s-clients'),
+			sClientsTop     	      = sClients.offset().top,
+			headerCallbackHeight    = $('.header-callback').outerHeight(true);
 
 	function scaleLogo(scrTop) {
 
@@ -60,7 +62,12 @@ function init() {
 			bluredVideo.removeClass('full-blured')
 		}
 
-		if ( scrTop >= sPosterConstructionsTop - $('.header-callback').outerHeight(true) && scrTop < sPosterConstructionsTop + sPosterConstructions.outerHeight() - $('.header-callback').outerHeight(true) ) {
+		let if_a = scrTop >= sPosterConstructionsTop - headerCallbackHeight,
+				if_b = scrTop < sPosterConstructionsTop + sPosterConstructions.outerHeight() - headerCallbackHeight,
+				if_c = scrTop >= sClientsTop - headerCallbackHeight,
+				if_d = scrTop < sClientsTop + sClients.outerHeight() - headerCallbackHeight;
+
+		if ( ( if_a && if_b ) || ( if_c && if_d ) ) {
 			menuSticky.addClass('dark')
 		}
 		else {
@@ -142,6 +149,35 @@ function init() {
 
 	adwScroll(windowTop);
 
+	let sClientsHeight = sClients.outerHeight();
+
+	$('.clients-block').each(function(i) {
+
+		let tapeWrapper = $(this),
+				tape 		    = tapeWrapper.find('.clients-tape'),
+				tapeWidth   = tape.outerWidth(true),
+				maxWidth    = tapeWrapper.width(),
+				xCoord      = 0,
+				slider;
+
+		function startSlider(scrTop) {
+			let startScroll = $('.clients-wrapper').offset().top - $(window).outerHeight();
+			if ( scrTop >= startScroll ) {
+				xCoord = scrTop - startScroll;
+				tape.css('transform', `translate3d(${ i % 2 == 0 ? xCoord / 2 : -xCoord / 2 }px, 0, 0)`)
+			}
+		}
+		startSlider();
+
+		$(window).on('scroll', function() {
+			let scrTop = $(window).scrollTop();
+			if ( scrTop > sClientsTop - $(window).height() && scrTop < sClientsTop + sClientsHeight ) {
+				startSlider(scrTop)
+			}
+		});
+
+	});
+
 	$(window).on('scroll', function() {
 
 		let scrTop = $(window).scrollTop();
@@ -181,6 +217,13 @@ function init() {
 
 	}counter();
 
+	let phoneMask = new Inputmask({
+  	mask: "+7 999 999 99 99",
+  	showMaskOnHover: false
+  });
+
+  phoneMask.mask('.phone-mask');
+
 }
 
 window.onload = () => {
@@ -189,8 +232,8 @@ window.onload = () => {
 
 }
 
-window.onresize = () => {
+// window.onresize = () => {
 
-	init();
+// 	init();
 
-}
+// }

@@ -31,6 +31,7 @@
 		"webpack-stream": "^6.1.2"
 	},
 	"dependencies": {
+		"inputmask": "^5.0.5",
 		"jquery": "^3.6.0"
 	}
 }

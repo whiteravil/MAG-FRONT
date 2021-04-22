@@ -170,6 +170,7 @@ h3, .h3
 	color: #000 !important
 	cursor: pointer
 	font-family: $gotham
+	border: none
 	+tr
 	&:hover
 		background-color: rgba(#fff, .85)
@@ -310,6 +311,9 @@ h3, .h3
 
 .s-adw
 	padding-top: rem(90px)
+	.section-title
+		.h2
+			font-size: rem(64px)
 
 .section-title
 	margin-bottom: rem(88px)
@@ -318,7 +322,7 @@ h3, .h3
 		font-size: rem(18px)
 		margin-bottom: rem(15px)
 	.h2
-		font-size: rem(64px)
+		font-size: rem(60px)
 		line-height: 1.235
 		max-width: rem(720px)
 
@@ -776,13 +780,254 @@ h3, .h3
 .clients-wrapper
 	overflow: hidden
 
+.clients-block
+	position: relative
+	overflow: hidden
+	height: rem(112px)
+	margin-bottom: rem(80px)
+	&:last-child
+		margin-bottom: 0
+	&:nth-child(even)
+		.clients-tape
+			left: 0
+			right: auto
+
 .clients-tape
+	position: absolute
+	top: 0
+	right: 0
+	height: 100%
 	display: flex
 	align-items: center
 	margin-bottom: rem(81px)
+	transition: transform .01 linear
 	&:last-child
 		margin-bottom: 0
 	img
-		width: rem(119px)
+		width: auto
+		height: 100%
 		flex-shrink: 0
 		margin-right: rem(61px)
+
+.clients-tape-col
+	display: flex
+	align-items: center
+	height: 100%
+
+.s-team
+	padding: rem(109px) 0 rem(130px)
+	.section-title
+		.h2
+
+.team
+	display: grid
+	grid-template-columns: repeat(3, 1fr)
+	grid-gap: rem(90px)
+	margin: 0 rem(125px)
+
+.team-person-img
+	margin-bottom: rem(29px)
+	img
+		width: 100%
+		display: block
+
+.team-person
+	.h5
+		font-size: rem(24px)
+		line-height: 1.3333
+		margin-bottom: rem(13px)
+	p
+		margin-bottom: rem(30px)
+
+.team-person-contacts
+	border-top: 1px solid #fff
+	padding-top: rem(18px)
+
+.team-person-contacts-item
+	margin-bottom: rem(10px)
+	&:last-child
+		margin-bottom: 0
+	a
+		text-decoration: none !important
+		color: #fff !important
+
+.s-contacts
+	border-top: 1px solid rgba(#fff, .2)
+
+.contacts-row
+	display: flex
+
+.contacts-left
+	flex-grow: 1
+	padding: rem(90px) rem(98px) rem(63px) 0
+	.section-title
+		margin-bottom: rem(55px)
+
+.contacts
+	display: flex
+	margin-bottom: rem(65px)
+
+.contacts-item
+	white-space: nowrap
+	margin-right: rem(110px)
+	&:last-child
+		margin-right: 0
+	.h6
+		font-size: rem(13px)
+		+f1
+		margin-bottom: rem(14px)
+	ul
+		list-style-type: none
+		padding: 0
+		margin: 0
+		li
+			margin-bottom: rem(5px)
+			font-size: rem(20px)
+			&:last-child
+				margin-bottom: 0
+			a
+				color: #fff !important
+				text-decoration: none !important
+				display: inline-block
+				position: relative
+			&.mail
+				a
+					&:hover:after
+						transform: scaleX(0)
+					&:after
+						content: ''
+						position: absolute
+						bottom: rem(3px)
+						left: 0
+						width: 100%
+						height: 1px
+						background-color: #fff
+						+tr
+						transform-origin: top left
+
+.contacts-form-wrapper
+	border: 1px solid rgba(#fff, .2)
+	padding: rem(48px) rem(59px) rem(54px) rem(50px)
+	max-width: rem(811px)
+
+.form-row
+	display: grid
+	grid-gap: rem(35px)
+	grid-template-columns: 1fr 1fr
+
+.form-group
+	margin-bottom: rem(28px)
+
+.form-label
+	display: block
+	margin-bottom: rem(10px)
+	font-weight: 500
+	font-size: rem(13px)
+
+.form-control
+	outline: none !important
+	border: none !important
+	width: 100%
+	min-width: 0
+	height: 60px
+	background-color: #fff
+	padding: 0 rem(15px)
+
+textarea.form-control
+	padding-top: rem(14px)
+	height: rem(160px)
+	resize: none
+
+.form-submit
+	display: flex
+	align-items: flex-start
+
+.form-checkbox
+	flex-grow: 1
+	margin-right: rem(20px)
+	label
+		display: inline-block
+		position: relative
+		margin: 0
+		input
+			position: absolute
+			z-index: -1
+			opacity: 0
+			visibility: hidden
+			&:checked + span:before
+				transform: scale(1)
+		span
+			display: block
+			position: relative
+			padding-left: 38px
+			font-weight: 500
+			font-size: rem(13px)
+			line-height: 1.38
+			&:after
+				content: ''
+				position: absolute
+				top: 0
+				left: 0
+				width: 20px
+				height: 20px
+				cursor: pointer
+				background-color: #fff
+			&:before
+				content: ''
+				position: absolute
+				top: 4px
+				left: 4px
+				width: 12px
+				height: 12px
+				background-color: $accent
+				+tr
+				z-index: 1
+				transform: scale(0)
+				cursor: pointer
+			a
+				text-decoration: none !important
+				color: #fff !important
+				position: relative
+				&:hover
+					&:after
+						transform: scaleX(0)
+				&:after
+					content: ''
+					position: absolute
+					bottom: 0
+					left: 0
+					height: 1px
+					width: 100%
+					background-color: #fff
+					+tr
+					transform-origin: top left
+
+.copyright
+	margin-top: rem(75px)
+	display: flex
+	justify-content: space-between
+	align-items: center
+	opacity: 0.5
+
+.copyright-right
+	a
+		display: flex
+		align-items: center
+		text-decoration: none !important
+		color: #fff !important
+		img
+			width: rem(84px)
+			margin-left: rem(6px)
+			transform: translateY(#{rem(4px)})
+
+.contacts-right
+	position: relative
+	width: rem(570px)
+	margin-right: rem(-120px)
+	img
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		object-fit: cover
