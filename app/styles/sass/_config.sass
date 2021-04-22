@@ -1,6 +1,6 @@
 // USER VARIABLES SECTION
 
-$accent: orange // Accent Color
+$accent: #006872 // Accent Color
 $fontsize: 16px // Body Font Size
 $textcolor: #333 // Text Color
 $lineheight: 1.375 // Document Line Height
@@ -38,6 +38,12 @@ $gutter: $grid-gutter-width
 
 @mixin tr()
 	transition: all .4s ease
+
+@mixin f1()
+	font-family: 'Roboto'
+
+@mixin f2()
+	font-family: 'Roboto Slab'
 
 @function rem($size)
   @return $size / $fontsize * 1rem

@@ -31,6 +31,9 @@ function init() {
 			aboutDateHeight = aboutDate.outerHeight(),
 			aboutDateTop    = aboutDate.offset().top;
 
+	let sPosterConstructions    = $('.s-poster-constructions'),
+			sPosterConstructionsTop = sPosterConstructions.offset().top;
+
 	function scaleLogo(scrTop) {
 
 		if ( scrTop >= logoRowTop ) {
@@ -55,6 +58,13 @@ function init() {
 		else {
 			menuSticky.removeClass('fixed');
 			bluredVideo.removeClass('full-blured')
+		}
+
+		if ( scrTop >= sPosterConstructionsTop - $('.header-callback').outerHeight(true) && scrTop < sPosterConstructionsTop + sPosterConstructions.outerHeight() - $('.header-callback').outerHeight(true) ) {
+			menuSticky.addClass('dark')
+		}
+		else {
+			menuSticky.removeClass('dark')
 		}
 
 	}
@@ -107,6 +117,29 @@ function init() {
 
 	}
 
+	let numbersFactsWrapper = $('.numbers-facts-wrapper'),
+			numbersFactsWrapperTop = numbersFactsWrapper.offset().top,
+			numbersBigImg = $('.numbers-facts-wrapper-big-nmb-value');
+
+	function scaleNmb(scrTop) {
+
+		if ( scrTop >= numbersFactsWrapperTop ) {
+			let scaleCoef = scrTop - numbersFactsWrapperTop;
+			numbersBigImg.css('transform', `scale(${1 + scaleCoef / 400})`);
+			$('.numbers-facts-item').each(function() {
+				let ths = $(this),
+						thsTop = ths.offset().top;
+				if ( scrTop > thsTop - $(window).height() / 1.5 ) {
+					ths.addClass('animate')
+				}
+				else {
+					ths.removeClass('animate')
+				}
+			});
+		}
+
+	}
+
 	adwScroll(windowTop);
 
 	$(window).on('scroll', function() {
@@ -120,6 +153,8 @@ function init() {
 		}
 
 		adwScroll(scrTop);
+
+		scaleNmb(scrTop);
 
 	});
 
