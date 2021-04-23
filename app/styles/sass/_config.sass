@@ -40,10 +40,13 @@ $gutter: $grid-gutter-width
 	transition: all .4s ease
 
 @mixin f1()
-	font-family: 'Roboto'
+	font-family: 'Roboto', sans-serif
 
 @mixin f2()
 	font-family: 'Roboto Slab'
+
+@mixin f3()
+	font-family: 'Gotham Pro', sans-serif
 
 @function rem($size)
   @return $size / $fontsize * 1rem
