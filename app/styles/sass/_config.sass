@@ -18,8 +18,8 @@ $gutter: $grid-gutter-width
 @import 'node_modules/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
 @import 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
 // @import 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
-// @import 'node_modules/bootstrap/scss/utilities/_sizing.scss' // Optional Bootstrap Utilites
-
+@import '../../libs/slick/slick.css'
+@import '../../libs/slick/slick-theme.css'
 // FONTS LOAD SECTION
 
 @mixin font($fname, $fstyle, $fweight, $furl)
@@ -69,10 +69,26 @@ input, textarea
 
 html
 	font-size: 0.952381vw
-
+	// font-size: 16px
+	// @media screen and ( max-width:1400px )
+	// 	font-size: 15px
+	// @media screen and ( max-width:1200px )
+	// 	font-size: 14px
+	@media screen and ( max-width:1024px )
+		font-size: 13px
+	@media screen and ( max-width:968px )
+		font-size: 12px
+	@media screen and ( max-width:767px )
+		font-size: 10px
+	@media screen and ( max-width:576px )
+		font-size: 8px
+	// @media screen and ( max-width:460px )
+	// 	font-size: 7px
+	// @media screen and ( max-width:380px )
+	// 	font-size: 5px
 body
 	font-family: $userfont
-	font-size: 0.952381vw
+	// font-size: 0.952381vw
 	line-height: $lineheight
 	color: $textcolor
 	min-width: 320px
