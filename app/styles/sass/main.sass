@@ -18,6 +18,9 @@ h3, .h3
 .container
 	margin-left: rem(120px)
 	margin-right: rem(120px)
+	@media screen and ( max-width:767px )
+		margin-left: 1.5rem
+		margin-right: 1.5rem
 
 .s-main-window
 	height: 100vh
@@ -98,6 +101,12 @@ h3, .h3
 	flex-direction: column
 	align-items: flex-end
 	flex-shrink: 0
+	@media screen and ( max-width:1024px )		
+		height: 25.6875rem
+	@media screen and ( max-width:460px )
+		height: 15.6875rem
+	@media screen and ( max-width:380px )
+		height: 18.6875rem
 	&:after
 		content: ''
 		position: absolute
@@ -119,6 +128,17 @@ h3, .h3
 		height: rem(331px)
 		.header-callback
 			transform: translateY(-75px)
+			@media screen and ( max-width:968px )
+				transform: translateY(-55px)
+			@media screen and ( max-width:576px )
+				transform: translateY(-45px)
+			@media screen and ( max-width:460px )
+				transform: translateY(-35px)
+			@media screen and ( max-width:380px )
+				transform: translateY(-20px)
+		.menu
+			@media screen and ( max-width:968px )
+				flex-direction: row
 	&.dark
 		.menu-link
 			color: #000 !important
@@ -133,6 +153,10 @@ h3, .h3
 	display: flex
 	margin-bottom: auto
 	align-items: center
+	@media screen and ( max-width:968px )
+		flex-direction: column
+		align-items: baseline
+	
 
 .menu-link
 	color: #fff !important
@@ -141,6 +165,11 @@ h3, .h3
 	letter-spacing: 0.01em
 	margin-right: 30px
 	font-family: $gotham
+	@media screen and ( max-width:968px )
+		margin-bottom: 1.5rem
+	@media screen and ( max-width:767px )
+		font-size: 11px
+		margin-right: 5px
 	&:last-child
 		margin-right: 0
 	&:hover
@@ -155,6 +184,11 @@ h3, .h3
 .header-callback
 	margin-top: rem(40px)
 	transition: transform .5s ease
+	&>a
+		&>svg
+			@media screen and ( max-width:767px )
+				width: 10px
+				height: 10px
 
 .btn
 	text-decoration: none !important
@@ -172,6 +206,8 @@ h3, .h3
 	font-family: $gotham
 	border: none
 	+tr
+	@media screen and ( max-width:767px )
+		font-size: 11px
 	&:hover
 		background-color: rgba(#fff, .85)
 		img
@@ -202,6 +238,12 @@ h3, .h3
 	display: flex
 	align-items: flex-end
 	justify-content: flex-start
+	@media screen and ( max-width:968px )
+		bottom: 11rem
+	@media screen and ( max-width:460px )
+		bottom: 7rem
+	@media screen and ( max-width:380px )
+		bottom: 10rem
 	.logo
 		// transform: scale(0.243056)
 		width: 350px
@@ -213,6 +255,8 @@ h3, .h3
 		width: 100%
 		// transform: translateX(#{rem(-57px)})
 		transform: translateX(#{rem(-10px)})
+		@media screen and ( max-width:968px )
+			transform: translateX(#{rem(-10px)}) translateY(1.375rem)
 	&.no-fixed
 		position: static
 
@@ -255,6 +299,8 @@ h3, .h3
 	.h2
 		max-width: rem(604px)
 		margin: 0
+		@media screen and ( max-width:576px )
+			max-width: auto
 		span
 			display: block
 			white-space: nowrap
@@ -278,6 +324,10 @@ h3, .h3
 	font-size: 24px
 	line-height: 1.46
 	transition: transform .1s ease
+	@media screen and ( max-width:1024px )
+		width: 63.25%
+	@media screen and ( max-width:767px )
+		width: 100%	
 	&:after
 		content: ''
 		position: absolute
@@ -297,6 +347,8 @@ h3, .h3
 		opacity: 0
 		transition: all .7s ease
 		transition-delay: .4s
+		@media screen and ( max-width:576px )
+			width: calc(50% - #{rem(17px)})
 
 .about-date
 	position: absolute
@@ -311,9 +363,13 @@ h3, .h3
 	left: rem(-100px)
 	z-index: 0
 	user-select: none
+	@media screen and ( max-width:576px )
+		left: -28rem
 
 .s-adw
 	padding-top: rem(90px)
+	@media screen and ( max-width:767px )
+		padding-top: 0
 	.section-title
 		.h2
 			font-size: rem(64px)
@@ -344,6 +400,9 @@ h3, .h3
 	top: 0
 	left: rem(-120px)
 	right: rem(-120px)
+	@media screen and ( max-width:576px )
+		left: 0
+		right: 0
 
 .adw-img-main
 	width: 100%
@@ -431,15 +490,23 @@ h3, .h3
 	display: flex
 	flex-direction: column
 	padding: rem(25px) rem(32px) rem(19px)
-
+	@media screen and ( max-width:1400px )
+		padding: rem(25px) rem(20px) rem(19px)
+	@media screen and ( max-width:968px )
+		padding: rem(25px) rem(5px) rem(19px)
+	@media screen and ( max-width:767px )
+		display: none
 .adw-img-banner-title
 	flex-grow: 1
 	margin-bottom: rem(20px)
 	opacity: 0.7
 
 .adw-img-banner-square-counter
+
 	display: flex
 	font-size: rem(57px)
+	@media screen and ( max-width:968px )
+		font-size: 3rem
 
 .adw-img-banner-square-counter-item
 	overflow: hidden
@@ -587,11 +654,16 @@ h3, .h3
 .poster-constructions-body
 	display: flex
 	margin-right: rem(-120px)
+	@media screen and ( max-width:1024px )
+		flex-direction: column
+		margin-right: 0
 
 .poster-constructions-body-left
 	flex-grow: 1
 	margin-right: rem(90px)
 	margin-bottom: rem(88px)
+	@media screen and ( max-width:1024px )
+		margin-right: 0
 
 .poster-constructions-item
 	padding-bottom: rem(82px)
@@ -637,6 +709,9 @@ h3, .h3
 	width: rem(480px)
 	flex-shrink: 0
 	background-color: #f2f2f2
+	@media screen and ( max-width:1024px )
+		height: 45rem
+		width: 100%
 
 .addresses-map-wrapper
 	height: 100%
@@ -660,30 +735,56 @@ h3, .h3
 
 .s-customers-focus
 	padding: rem(224px) 0 0
+	@media screen and ( max-width:576px )
+		overflow: hidden
+	
 
 .customers-focus-head
 	margin-bottom: rem(260px)
 	display: flex
 	border: 1px solid #fff
 	padding: 0 rem(60px) 0 rem(40px)
+	@media screen and ( max-width:1024px )
+		padding: 0
+		padding-right: 0.5rem
+	@media screen and ( max-width:968px )
+		flex-direction: column
+		border: none
+		background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4))
+		padding-right: 0
+		padding: 0 18px 25px 18px
 
 .customers-focus-head-img
 	position: relative
 	width: rem(387px)
 	margin-right: rem(22px)
 	flex-shrink: 0
+	@media screen and ( max-width:1024px )
+		margin-right: 0.5rem
+	@media screen and ( max-width:968px )
+		margin-right: 0
+		margin-top: -12rem
 	img
 		position: absolute
 		width: 100%
 		bottom: 0
 		left: 0
 		z-index: 1
+		@media screen and ( max-width:968px )
+			position: relative
 
 .customers-focus-head-title
 	width: 25%
 	flex-shrink: 0
 	margin-right: rem(68px)
 	padding: rem(61px) 0
+	@media screen and ( max-width:1024px )
+		width: 28%
+		margin-right: 2.25rem
+	@media screen and ( max-width:968px )
+		width: 100%
+		margin-right: 0
+		border-top: 1px solid #fff
 	.h2
 		line-height: 1.3
 		font-size: rem(40px)
@@ -691,6 +792,8 @@ h3, .h3
 
 .customers-focus-head-text
 	padding: rem(80px) 0 rem(73px)
+	@media screen and ( max-width:968px )
+		padding: 0
 	p
 		font-size: rem(23px)
 		line-height: 1.3
@@ -719,6 +822,8 @@ h3, .h3
 	img
 		width: rem(990px)
 		flex-shrink: 0
+		@media screen and ( max-width:767px )
+			width: 57.875rem
 
 .numbers-facts-wrapper-big-nmb-value
 	transform-origin: 78% 30%
@@ -734,6 +839,16 @@ h3, .h3
 	font-size: rem(35px)
 	line-height: 1.315
 	font-weight: bold
+	@media screen and ( max-width:1150px )
+		margin-left: 9rem
+		margin-right: 11.75rem
+	@media screen and ( max-width:890px )
+		margin-left: 4rem
+		margin-right: 8rem
+	@media screen and ( max-width:767px )
+		margin-left: 0
+		margin-right: 4rem
+		font-size: 2rem
 
 .numbers-facts-first-left
 	flex-grow: 1
@@ -741,6 +856,10 @@ h3, .h3
 .numbers-facts-first-right
 	width: rem(257px)
 	flex-shrink: 0
+	@media screen and ( max-width:1650px )
+		margin-left: 65%
+	@media screen and ( max-width:767px )
+		margin-left: 62%
 
 .numbers-facts-other
 	display: flex
@@ -749,6 +868,8 @@ h3, .h3
 	margin-right: rem(300px)
 	position: relative
 	z-index: 1
+	@media screen and ( max-width:968px )
+		margin-right: 0
 
 .numbers-facts-item
 	width: rem(237px)
@@ -770,9 +891,12 @@ h3, .h3
 		font-weight: bold
 	&:nth-child(2)
 		margin-right: rem(150px)
+		@media screen and ( max-width:1024px )
+			margin-right: 4.375rem
 	&:nth-child(3)
 		margin-right: rem(300px)
-
+		@media screen and ( max-width:1024px )
+		margin-right: 11.75rem
 .s-clients
 	background-color: #fff
 	padding: rem(80px) 0 rem(110px)
@@ -882,7 +1006,8 @@ h3, .h3
 	grid-template-columns: repeat(3, 1fr)
 	grid-gap: rem(90px)
 	margin: 0 rem(125px)
-
+	@media screen and ( max-width:968px )
+		grid-template-columns: 1fr
 .team-person-img
 	margin-bottom: rem(29px)
 	img
@@ -932,6 +1057,7 @@ h3, .h3
 
 .s-contacts
 	border-top: 1px solid rgba(#fff, .2)
+	overflow: hidden
 	&.animate
 		.section-title
 			.h6, .h2
@@ -959,10 +1085,15 @@ h3, .h3
 
 .contacts-row
 	display: flex
+	@media screen and ( max-width:968px )
+		flex-direction: column
+		position: relative
 
 .contacts-left
 	flex-grow: 1
 	padding: rem(90px) rem(98px) rem(63px) 0
+	@media screen and ( max-width:968px )
+		padding: rem(90px) 0 rem(63px) 0
 	.section-title
 		margin-bottom: rem(55px)
 
@@ -1018,6 +1149,8 @@ h3, .h3
 	+tr
 	opacity: 0
 	transform: translateY(20px)
+	@media screen and ( max-width:968px )
+		margin-top: 48rem
 
 .form-row
 	display: grid
@@ -1136,6 +1269,14 @@ textarea.form-control
 	position: relative
 	width: rem(570px)
 	margin-right: rem(-120px)
+	@media screen and ( max-width:968px )
+		position: absolute
+		top: 44%
+		transform: translateY(-50%)
+		width: 150%
+		margin-left: -15rem
+		margin-right: 0
+		height: 40rem
 	img
 		position: absolute
 		top: 0
@@ -1351,5 +1492,6 @@ textarea.form-control
 		line-height: 1.33
 		+f2
 		margin-bottom: rem(28px)
+
 
 @import media
