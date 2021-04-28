@@ -135,8 +135,6 @@ function init() {
 					blurOpacity = (scrTop - top) / (height - blurHeight - $(window).height());
 			if ($(window).width() <= 767) {
 				if (scrTop >= top && scrTop < top + height) {
-					let imgSCale = 1.5 * ( 1 + blurOpacity );
-					mainImg.attr('style', `transform: scale(${imgSCale > 3 ? 3 : imgSCale})`);
 					blurBlock.attr('style', `opacity: ${blurOpacity}`);
 				}
 			} else {
@@ -223,15 +221,15 @@ function init() {
 
 	});
 
-	$('.contacts-form').on('submit', function(e) {
-		e.preventDefault();
-		let ths = $(this),
-				success = ths.find('.form-success');
-		success.addClass('active');
-		setTimeout(() => {
-			success.removeClass('active')
-		}, 5000)
-	});
+	// $('.contacts-form').on('submit', function(e) {
+	// 	e.preventDefault();
+	// 	let ths = $(this),
+	// 			success = ths.find('.form-success');
+	// 	success.addClass('active');
+	// 	setTimeout(() => {
+	// 		success.removeClass('active')
+	// 	}, 5000)
+	// });
 
 	$('.form-success-link a').on('click', function(e) {
 		e.preventDefault();

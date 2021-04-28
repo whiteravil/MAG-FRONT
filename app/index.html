@@ -1006,8 +1006,10 @@
 				searchControlProvider: 'yandex#search'
 			});
 
+			let contactsMapCenter = $(window).width() <= 576 ? [55.772783, 49.135917] : [55.788305, 49.145509]; 
+
 			let contactsMap = new ymaps.Map('contacts-map', {
-				center: [55.788305, 49.145509],
+				center: contactsMapCenter,
 				zoom: 12,
 				duration: 1000,
 				controls: []
@@ -1079,7 +1081,7 @@
 						},
 						options: {
 							iconLayout: 'default#image',
-							iconImageHref: $(window).width() >= 576 ? 'images/dist/icons/map-marker.svg' : 'images/dist/icons/map-marker-white.svg',
+							iconImageHref: 'images/dist/icons/map-marker.svg',
 							iconImageSize: [20, 30],
 							iconImageOffset: [-10, -30],
 							hideIconOnBalloonOpen: false,

@@ -469,7 +469,7 @@ h3, .h3
 	position: sticky
 	@media screen and ( max-width:767px )
 		height: 100vh
-		object-fit: contain
+		object-fit: cover
 
 .adw-img-bg-blur
 	position: absolute
@@ -845,12 +845,12 @@ h3, .h3
 
 .addresses-map
 	height: 100%
-	[class*='-ground-pane']
-		@media screen and (max-width: 576px)
-			filter: grayscale(1) invert(.85)
-	[class*="-copyrights-pane"]
-		@media screen and (max-width: 576px)
-			display: none !important
+	// [class*='-ground-pane']
+	// 	@media screen and (max-width: 576px)
+	// 		filter: grayscale(1) invert(.85)
+	// [class*="-copyrights-pane"]
+	// 	@media screen and (max-width: 576px)
+	// 		display: none !important
 
 .addresses-map-open-full
 	position: absolute
@@ -869,8 +869,8 @@ h3, .h3
 			height: 42px
 			line-height: 42px
 			padding: 0 31px
-			background-color: #fff !important
-			color: #000 !important
+			// background-color: #fff !important
+			// color: #000 !important
 
 .s-customers-focus
 	padding: rem(224px) 0 0
@@ -1279,6 +1279,7 @@ h3, .h3
 	a
 		text-decoration: none !important
 		color: #fff !important
+		white-space: nowrap
 
 .s-contacts
 	border-top: 1px solid rgba(#fff, .2)
@@ -1941,5 +1942,9 @@ textarea.form-control
 			width: 20px
 			height: 20px
 			object-fit: contain
+
+.contacts-form-wrapper .btn img.btn-white,
+.popup-content .btn img.btn-green
+		display: none
 
 @import media
