@@ -355,7 +355,7 @@ function init() {
 
 	$(document).on('click', function (e) {
 		let tg = $(e.target);
-		if (tg.closest('.popup-wrapper').length == 1 && !tg.closest('.popup-block').length) {
+		if (tg.closest('.popup-wrapper').length == 1 && !tg.closest('.popup-content').length) {
 			closePopup();
 		}
 	});
@@ -367,6 +367,12 @@ function init() {
 			scrollTop: $(id).offset().top
 		}, 700);
 		$('.mobile-menu').removeClass('opened');
+	});
+
+	$(document).on('keyup', function(e) {
+		if (e.key == "Escape") {
+			closePopup()
+		}
 	});
 
 }
