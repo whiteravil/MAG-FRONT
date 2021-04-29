@@ -22,7 +22,36 @@
 
 <body>
 
+	<div class="mobile-menu">
+		<div class="mobile-menu-close"><img src="images/dist/icons/close-black.svg" alt=""></div>
+		<div class="mobile-menu-wrapper">
+			<div class="mobile-menu-logo">
+				<img src="images/dist/logo-green.svg" alt="">
+			</div>
+			<div class="mobile-menu-list">
+				<a href="#s-1">Услуги</a>
+				<a href="#s-2">Клиенты</a>
+				<a href="#s-3">Команда</a>
+				<a href="#s-4">Контакты</a>
+			</div>
+			<div class="mobile-menu-phones">
+				<a href="tel:+7 843 205-10-30">+7 843 205-10-30</a>
+				<a href="">+7 843 240-06-18</a>
+			</div>
+			<div class="mobile-menu-mail">
+				<a href="mailto:info@mag-kazan.ru">info@mag-kazan.ru</a>
+			</div>
+			<div class="mobile-menu-btn">
+				<a href="#" class="btn open-popup">Оставить заявку <img src="images/dist/icons/arrow-right-white.svg" alt=""></a>
+			</div>
+		</div>
+	</div>
+
 	<div class="wrapper">
+
+		<div class="mobile-menu-open">
+			<img src="images/dist/icons/menu.svg" alt="">
+		</div>
 
 		<section class="s-main-window">
 
@@ -656,6 +685,11 @@
 						</div>
 
 						<div class="contacts-form-wrapper">
+
+							<div class="contacts-mob-title">
+								<div class="h2">Напишите нам</div>
+							</div>
+
 							<form class="contacts-form">
 
 								<div class="form-success">
@@ -680,12 +714,12 @@
 
 										<div class="form-group">
 											<label class="form-label">Имя</label>
-											<input type="text" class="form-control">
+											<input type="text" class="form-control" required>
 										</div>
 
 										<div class="form-group">
 											<label class="form-label">Телефон</label>
-											<input type="text" class="form-control phone-mask">
+											<input type="text" class="form-control phone-mask" required>
 										</div>
 
 									</div>
@@ -693,8 +727,8 @@
 									<div class="form-col">
 
 										<div class="form-group">
-											<label class="form-label">Имя</label>
-											<textarea class="form-control"></textarea>
+											<label class="form-label">Сообщение</label>
+											<textarea class="form-control" required></textarea>
 										</div>
 									</div>
 
@@ -768,12 +802,12 @@
 
 								<div class="form-group">
 									<label class="form-label">Имя</label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" required>
 								</div>
 
 								<div class="form-group">
 									<label class="form-label">Телефон</label>
-									<input type="text" class="form-control phone-mask">
+									<input type="text" class="form-control phone-mask" required>
 								</div>
 
 							</div>
@@ -781,8 +815,8 @@
 							<div class="form-col">
 
 								<div class="form-group">
-									<label class="form-label">Имя</label>
-									<textarea class="form-control"></textarea>
+									<label class="form-label">Сообщение</label>
+									<textarea class="form-control" required></textarea>
 								</div>
 							</div>
 
@@ -1006,7 +1040,11 @@
 				searchControlProvider: 'yandex#search'
 			});
 
-			let contactsMapCenter = $(window).width() <= 576 ? [55.772783, 49.135917] : [55.788305, 49.145509]; 
+			addressesMap.behaviors.disable('drag');
+
+			allAddressesMap.behaviors.disable('drag');
+
+			let contactsMapCenter = $(window).width() <=  576 ? [55.772783, 49.135917] : [55.788305, 49.145509]; 
 
 			let contactsMap = new ymaps.Map('contacts-map', {
 				center: contactsMapCenter,
@@ -1016,6 +1054,8 @@
 			}, {
 				searchControlProvider: 'yandex#search'
 			});
+
+			contactsMap.behaviors.disable('drag');
 
 			let addressesMapCollectionList = new ymaps.ObjectManager({
 				clusterize: false,
@@ -1189,6 +1229,11 @@
 			$('.adw-content-map-link').on('click', function () {
 				let id = parseInt($(this).data('map-item-id'));
 				$('.all-addresses-list').find(`.all-addresses-list-type-item[data-id="${id}"]`).trigger('click');
+				setTimeout(() => {
+					$('.all-addresses-right').animate({
+						scrollTop: $('.all-addresses-right').scrollTop() + ($(`.all-addresses-list-type-item[data-id="${id}"]`).offset().top - $('.all-addresses-right').offset().top)
+					}, 400);
+				}, 400)
 			});
 
 		}

@@ -5,6 +5,13 @@ window.$ = $
 import Inputmask from "inputmask"
 require('../libs/slick/slick.min.js')
 
+function windowHeight() {
+	let vh = window.innerHeight * 0.01;
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+windowHeight();
+
 function init() {
 
 	const touchPrevent = e => {
@@ -135,6 +142,8 @@ function init() {
 					blurOpacity = (scrTop - top) / (height - blurHeight - $(window).height());
 			if ($(window).width() <= 767) {
 				if (scrTop >= top && scrTop < top + height) {
+					let imgSCale = 1 + blurOpacity * 3;
+					mainImg.attr('style', `transform: scale(${imgSCale > 3 ? 3 : imgSCale})`);
 					blurBlock.attr('style', `opacity: ${blurOpacity}`);
 				}
 			} else {
@@ -298,7 +307,7 @@ function init() {
 	} counter();
 
 	let phoneMask = new Inputmask({
-		mask: "+7 999 999 99 99",
+		mask: "+7 999 999-99-99",
 		showMaskOnHover: false
 	});
 
@@ -351,7 +360,24 @@ function init() {
 		}
 	});
 
+	$('.mobile-menu-list a').on('click', function(e) {
+		e.preventDefault();
+		let id = $(this).attr('href');
+		$('html, body').animate({
+			scrollTop: $(id).offset().top
+		}, 700);
+		$('.mobile-menu').removeClass('opened');
+	});
+
 }
+
+$('.mobile-menu-open').on('click', function() {
+	$('.mobile-menu').addClass('opened');
+});
+
+$('.mobile-menu-close').on('click', function() {
+	$('.mobile-menu').removeClass('opened');
+});
 
 window.onload = () => {
 
@@ -360,7 +386,5 @@ window.onload = () => {
 }
 
 // window.onresize = () => {
-
-// 	init();
-
+// 	windowHeight();
 // }
