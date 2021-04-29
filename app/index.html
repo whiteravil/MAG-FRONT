@@ -1040,10 +1040,6 @@
 				searchControlProvider: 'yandex#search'
 			});
 
-			addressesMap.behaviors.disable('drag');
-
-			allAddressesMap.behaviors.disable('drag');
-
 			let contactsMapCenter = $(window).width() <=  576 ? [55.772783, 49.135917] : [55.788305, 49.145509]; 
 
 			let contactsMap = new ymaps.Map('contacts-map', {
@@ -1055,7 +1051,11 @@
 				searchControlProvider: 'yandex#search'
 			});
 
-			contactsMap.behaviors.disable('drag');
+			if ( $(window).width() <= 968 ) {
+				addressesMap.behaviors.disable('drag');
+				allAddressesMap.behaviors.disable('drag');
+				contactsMap.behaviors.disable('drag');
+			}
 
 			let addressesMapCollectionList = new ymaps.ObjectManager({
 				clusterize: false,
