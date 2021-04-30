@@ -379,10 +379,12 @@ function init() {
 
 	$('.mobile-menu-open').on('click', function() {
 		$('.mobile-menu').addClass('opened');
+		bodyNoScroll();
 	});
 
 	$('.mobile-menu-close').on('click', function() {
 		$('.mobile-menu').removeClass('opened');
+		bodyHasScroll();
 	});
 
 }
