@@ -375,21 +375,21 @@ function init() {
 		}
 	});
 
+	$('.mobile-menu-open').on('click', function() {
+		$('.mobile-menu').addClass('opened');
+	});
+
+	$('.mobile-menu-close').on('click', function() {
+		$('.mobile-menu').removeClass('opened');
+	});
+
 }
 
-$('.mobile-menu-open').on('click', function() {
-	$('.mobile-menu').addClass('opened');
-});
-
-$('.mobile-menu-close').on('click', function() {
-	$('.mobile-menu').removeClass('opened');
-});
-
-window.onload = () => {
+document.addEventListener("DOMContentLoaded", function() {
 
 	init();
 
-}
+});
 
 // window.onresize = () => {
 // 	windowHeight();
