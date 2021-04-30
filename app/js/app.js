@@ -10,7 +10,9 @@ function windowHeight() {
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-windowHeight();
+if ( $(window).width() <= 576 ) {
+	windowHeight();
+}
 
 function init() {
 
