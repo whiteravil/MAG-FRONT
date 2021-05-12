@@ -1271,9 +1271,12 @@ h3, .h3
 			margin-bottom: 6px
 	p
 		margin-bottom: rem(30px)
+		@media screen and (max-width: 968px)
+			min-height: 32px
 		@media screen and (max-width: 576px)
 			font-size: 12px
 			margin-bottom: 21px
+			min-height: 0
 
 .team-person-contacts
 	padding-top: rem(18px)
@@ -1572,6 +1575,8 @@ textarea.form-control
 					background-color: #fff
 					+tr
 					transform-origin: top left
+					@media (max-width: 968px)
+						transform: none !important
 
 .copyright
 	margin-top: rem(75px)
@@ -1719,6 +1724,9 @@ textarea.form-control
 	font-weight: bold
 	max-width: rem(700px)
 	line-height: 1.24
+	@media (max-width: 968px)
+		font-size: 18px
+		margin-bottom: 17px
 
 .popup-content
 	background-color: #fff
