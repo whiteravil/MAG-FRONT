@@ -395,12 +395,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+let firstWidth = window.innerWidth;
+
 window.addEventListener('resize', () => {
 
-	let intViewportHeight = window.innerHeight,
-			intViewportWidth = window.innerWidth;
+	let intViewportWidth = window.innerWidth;
 
-	if ( intViewportWidth < 968 && intViewportWidth > intViewportHeight ) {
+	if ( intViewportWidth < 968 && firstWidth != intViewportWidth ) {
 
 		let loc = window.location.href;
 
