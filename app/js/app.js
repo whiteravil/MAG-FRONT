@@ -389,12 +389,23 @@ function init() {
 
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
 
 	init();
 
 });
 
-// window.onresize = () => {
-// 	windowHeight();
-// }
+window.addEventListener('resize', () => {
+
+	let intViewportHeight = window.innerHeight,
+			intViewportWidth = window.innerWidth;
+
+	if ( intViewportWidth < 968 && intViewportWidth > intViewportHeight ) {
+
+		let loc = window.location.href;
+
+		window.location = loc;
+
+	}
+
+})

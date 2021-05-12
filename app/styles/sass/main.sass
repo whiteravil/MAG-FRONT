@@ -27,6 +27,8 @@ h3, .h3
 
 .s-main-window
 	height: 100vh
+	@media screen and (max-width: 968px)
+		height: 75vh
 	@media screen and (max-width: 576px)
 		height: calc(var(--vh, 1vh) * 100)
 
@@ -458,6 +460,9 @@ h3, .h3
 		// @media screen and ( max-width:576px )
 			// margin-top: calc(var(--vh, 1vh) * -27.5)
 			// margin-top: -57vw
+	@media screen and ( max-width:968px )
+		padding-top: 500px
+
 
 .adw-img-bg
 	position: absolute
@@ -1238,10 +1243,9 @@ h3, .h3
 	@media screen and ( max-width:1024px )
 		grid-gap: rem(30px)
 		margin: 0
-	@media screen and ( max-width:968px )
-		grid-template-columns: 1fr
 	@media screen and (max-width: 576px)
 		grid-gap: 49px
+		grid-template-columns: 1fr
 .team-person-img
 	margin-bottom: rem(29px)
 	img
