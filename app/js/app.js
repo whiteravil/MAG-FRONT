@@ -148,6 +148,9 @@ function init() {
 					mainImg.attr('style', `transform: scale(${imgSCale > 3 ? 3 : imgSCale})`);
 					blurBlock.attr('style', `opacity: ${blurOpacity}`);
 				}
+				else if ( scrTop < top ) {
+					mainImg.attr('style', `transform: scale(1)`);
+				}
 			} else {
 				if (scrTop >= top && scrTop < top + height) {
 
@@ -324,6 +327,9 @@ function init() {
 		$(id).show();
 		setTimeout(() => {
 			$(id).addClass('opened')
+			if ( id == '#callback' ) {
+				$(id).find('.form-control').eq(0).focus()
+			}
 		}, 50);
 		bodyNoScroll();
 	}
@@ -369,6 +375,9 @@ function init() {
 			scrollTop: $(id).offset().top
 		}, 700);
 		$('.mobile-menu').removeClass('opened');
+
+		bodyHasScroll();
+
 	});
 
 	$(document).on('keyup', function(e) {

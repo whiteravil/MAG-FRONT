@@ -15,6 +15,46 @@
 
 	<link rel="stylesheet" href="css/main.min.css">
 
+	<!-- Init latest browser -->
+	<script>
+		navigator.whatBrowser= (function(){
+			var ua= navigator.userAgent, tem, 
+			M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+			if(/trident/i.test(M[1])){
+				tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+				return 'IE';
+			}
+			if(M[1]=== 'Chrome'){
+				tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+				if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+			}
+			M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+			if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+			return {
+				name: M[0],
+				version: parseFloat(M[1])
+			};
+		})();
+		if ( navigator.whatBrowser == 'IE' ) {
+			window.location = '/outdated/'
+		}
+		else if ( navigator.whatBrowser.name == 'Chrome' && navigator.whatBrowser.version < 57 ) {
+			window.location = '/outdated/'
+		}
+		else if ( navigator.whatBrowser.name == 'Firefox' && navigator.whatBrowser.version < 52 ) {
+			window.location = '/outdated/'
+		}
+		else if ( navigator.whatBrowser.name == 'Opera' && navigator.whatBrowser.version < 44 ) {
+			window.location = '/outdated/'
+		}
+		else if ( navigator.whatBrowser.name == 'Safari' && navigator.whatBrowser.version < 10.1 ) {
+			window.location = '/outdated/'
+		}
+		else if ( navigator.whatBrowser.name == 'Opera Mini' ) {
+			window.location = '/outdated/'
+		}
+	</script>
+
 	<script src="https://api-maps.yandex.ru/2.1/?apikey=0b3dbbe1-a6ac-4753-ae36-c6eea46e0748&lang=ru_RU"
 		type="text/javascript"></script>
 
