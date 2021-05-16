@@ -10,9 +10,15 @@ function windowHeight() {
 	document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-if ( $(window).width() <= 576 ) {
+if ( windowWidth <= 576 ) {
 	windowHeight();
 }
+
+let body = $('body'),
+		windowDOM = $(window),
+		windowDOMHeight = windowDOM.height(),
+		windowWidth = windowDOM.width(),
+		documentDOM = $(document);
 
 function init() {
 
@@ -21,12 +27,12 @@ function init() {
 	}
 
 	function bodyNoScroll() {
-		$('body').addClass('no-scroll');
+		body.addClass('no-scroll');
 		document.addEventListener('touchmove', touchPrevent, { passive: true });
 	}
 
 	function bodyHasScroll() {
-		$('body').removeClass('no-scroll');
+		body.removeClass('no-scroll');
 		document.removeEventListener('touchmove', touchPrevent, { passive: true });
 	}
 
@@ -43,10 +49,10 @@ function init() {
 		logoRowWidth = logoRow.width(),
 		logoBlock = $('.logo-block');
 
-	// let logoDefaultScale = $('.logo-block .logo').css('transform'),
+	let logoDefaultScale = $('.logo-block .logo').css('transform');
 	let logo = $('.logo-block .logo'),
-		logoWidth = logo.width();
-	// scaleCoef = parseFloat(logoDefaultScale.replace('matrix(', '').replace(')', '').split(', ')[0]);
+			logoWidth = logo.width(),
+			scaleCoef = parseFloat(logoDefaultScale.replace('matrix(', '').replace(')', '').split(', ')[0]);
 
 	let bluredVideo = $('.blured-video');
 
@@ -74,13 +80,14 @@ function init() {
 			logoBlock.addClass('no-fixed');
 		}
 		else {
-			// let scaleDynamicCoef = scrTop / logoRowTop * ( 1 - scaleCoef ) + scaleCoef ;
-			let proport = scrTop / logoRowTop,
-				scaleDynamicCoef = proport * (logoRowWidth - logoWidth) + logoWidth,
-				blurPX = proport * 25;
+			let currCoef = scrTop / logoRowTop * ( 1 - scaleCoef ) + scaleCoef,
+					scaleDynamicCoef = currCoef > 1 ? 1 : currCoef ,
+					proport = scrTop / logoRowTop,
+					// scaleDynamicCoef = proport * (logoRowWidth - logoWidth) + logoWidth,
+					blurPX = proport * 25;
 			logoBlock.removeClass('no-fixed');
-			// $('.logo-block .logo').css('transform', `scale(${scaleDynamicCoef})`)
-			logo.css('width', `${scaleDynamicCoef}`);
+			$('.logo-block .logo').css('transform', `scale(${scaleDynamicCoef})`)
+			// logo.css('width', `${scaleDynamicCoef}`);
 			// $('.main-window-bg').get(0).style.setProperty('--main-window-blur', `${blurPX}px`);
 			bluredVideo.css('opacity', scrTop / menuTop);
 		}
@@ -110,11 +117,11 @@ function init() {
 
 	function animateSAbout(scrTop) {
 
-		let topAnimate = scrTop - aboutDateTop + $(window).height();
+		let topAnimate = scrTop - aboutDateTop + windowDOMHeight;
 
 		let transformAboutDate = topAnimate > 0 ? topAnimate : 0;
 
-		if (scrTop >= sAboutTop - $(window).height() / 2) {
+		if (scrTop >= sAboutTop - windowDOMHeight / 2) {
 			sAbout.addClass('animate')
 		}
 		else {
@@ -124,14 +131,16 @@ function init() {
 		$('.about-date').css('transform', `translate3d(${transformAboutDate / 5}px, 0, 0)`)
 	}
 
-	let windowTop = $(window).scrollTop();
+	let windowTop = windowDOM.scrollTop();
 
 	scaleLogo(windowTop);
 	animateSAbout(windowTop);
 
+	let adwWrapper = $('.adw-wrapper');
+
 	function adwScroll(scrTop) {
 
-		$('.adw-wrapper').each(function () {
+		adwWrapper.each(function () {
 
 			let ths = $(this),
 					top = ths.offset().top,
@@ -141,8 +150,8 @@ function init() {
 					blur = blurBlock.find('img'),
 					content = ths.find('.adw-content'),
 					blurHeight = blur.outerHeight(),
-					blurOpacity = (scrTop - top) / (height - blurHeight - $(window).height());
-			if ($(window).width() <= 767) {
+					blurOpacity = (scrTop - top) / (height - blurHeight - windowDOMHeight);
+			if (windowWidth <= 767) {
 				if (scrTop >= top && scrTop < top + height) {
 					let imgSCale = 1 + blurOpacity * 3;
 					mainImg.attr('style', `transform: scale(${imgSCale > 3 ? 3 : imgSCale})`);
@@ -173,17 +182,18 @@ function init() {
 	let numbersFactsWrapper = $('.numbers-facts-wrapper'),
 		numbersFactsWrapperTop = numbersFactsWrapper.offset().top,
 		numbersFactsWrapperHeight = numbersFactsWrapper.outerHeight(),
-		numbersBigImg = $('.numbers-facts-wrapper-big-nmb-value');
+		numbersBigImg = $('.numbers-facts-wrapper-big-nmb-value'),
+		numbersFactsItem = $('.numbers-facts-item');
 
 	function scaleNmb(scrTop) {
 
 		if (scrTop >= numbersFactsWrapperTop && scrTop < numbersFactsWrapperHeight + numbersFactsWrapperTop) {
 			let scaleCoef = scrTop - numbersFactsWrapperTop;
 			numbersBigImg.css('transform', `scale(${1 + scaleCoef / 400})`);
-			$('.numbers-facts-item').each(function () {
+			numbersFactsItem.each(function () {
 				let ths = $(this),
 					thsTop = ths.offset().top;
-				if (scrTop > thsTop - $(window).height() / 1.5) {
+				if (scrTop > thsTop - windowDOMHeight / 1.5) {
 					ths.addClass('animate')
 				}
 				else {
@@ -211,7 +221,7 @@ function init() {
 			// slider;
 
 		// function startSlider(scrTop) {
-		// 	let startScroll = $('.clients-wrapper').offset().top - $(window).outerHeight();
+		// 	let startScroll = $('.clients-wrapper').offset().top - windowDOM.outerHeight();
 		// 	if (scrTop >= startScroll) {
 		// 		xCoord = scrTop - startScroll;
 		// 		tape.css('transform', `translate3d(${i % 2 == 0 ? xCoord / 2 : -xCoord / 2}px, 0, 0)`)
@@ -255,31 +265,31 @@ function init() {
 		sContacts = $('.s-contacts'),
 		sContactsTop = sContacts.offset().top;
 
-	$(window).on('scroll', function () {
+	windowDOM.on('scroll', function () {
 
-		let scrTop = $(window).scrollTop();
+		let scrTop = windowDOM.scrollTop();
 
 		scaleLogo(scrTop);
 
-		if (scrTop > sAboutTop - $(window).height() && scrTop <= sAboutTop + sAboutHeight) {
+		if (scrTop > sAboutTop - windowDOMHeight && scrTop <= sAboutTop + sAboutHeight) {
 			animateSAbout(scrTop);
 		}
 
-		if (scrTop > sClientsTop - $(window).height() / 1.3) {
+		if (scrTop > sClientsTop - windowDOMHeight / 1.3) {
 			sClients.addClass('animate')
 		}
 		else {
 			sClients.removeClass('animate')
 		}
 
-		if (scrTop > sTeamTop - $(window).height() / 1.3) {
+		if (scrTop > sTeamTop - windowDOMHeight / 1.3) {
 			sTeam.addClass('animate')
 		}
 		else {
 			sTeam.removeClass('animate')
 		}
 
-		if (scrTop > sContactsTop - $(window).height() / 1.3) {
+		if (scrTop > sContactsTop - windowDOMHeight / 1.3) {
 			sContacts.addClass('animate')
 		}
 		else {
@@ -344,7 +354,7 @@ function init() {
 		bodyHasScroll();
 	}
 
-	$(document).on('click', '.open-popup', function (e) {
+	documentDOM.on('click', '.open-popup', function (e) {
 		e.preventDefault();
 		let id = $(this).attr('href');
 		openPopup(id);
@@ -361,7 +371,7 @@ function init() {
 		}
 	});
 
-	$(document).on('click', function (e) {
+	documentDOM.on('click', function (e) {
 		let tg = $(e.target);
 		if (tg.closest('.popup-wrapper').length == 1 && !tg.closest('.popup-content').length) {
 			closePopup();
@@ -380,7 +390,7 @@ function init() {
 
 	});
 
-	$(document).on('keyup', function(e) {
+	documentDOM.on('keyup', function(e) {
 		if (e.key == "Escape") {
 			closePopup()
 		}
@@ -397,6 +407,8 @@ function init() {
 	});
 
 }
+
+window.requestAnimationFrame(init);
 
 document.addEventListener("DOMContentLoaded", () => {
 
