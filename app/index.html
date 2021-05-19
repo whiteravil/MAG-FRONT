@@ -18,8 +18,12 @@
 	<!-- Init latest browser -->
 	<script>
 		navigator.whatBrowser= (function(){
-			var ua= navigator.userAgent, tem, 
-			M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+			var ua = navigator.userAgent,
+			tem, 
+			M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [],
+			ins = ua.indexOf('Instagram'),
+			android = ua.match(/Android/i),
+			fcb = ua.indexOf('FBAV');
 			if(/trident/i.test(M[1])){
 				tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
 				return 'IE';
@@ -35,25 +39,32 @@
 				version: parseFloat(M[1])
 			};
 		})();
-		if ( navigator.whatBrowser == 'IE' ) {
-			window.location = '/outdated/'
-		}
-		else if ( navigator.whatBrowser.name == 'Chrome' && navigator.whatBrowser.version < 57 ) {
-			window.location = '/outdated/'
-		}
-		else if ( navigator.whatBrowser.name == 'Firefox' && navigator.whatBrowser.version < 52 ) {
-			window.location = '/outdated/'
-		}
-		else if ( navigator.whatBrowser.name == 'Opera' && navigator.whatBrowser.version < 44 ) {
-			window.location = '/outdated/'
-		}
-		else if ( navigator.whatBrowser.name == 'Safari' && navigator.whatBrowser.version < 10.1 ) {
-			window.location = '/outdated/'
-		}
-		else if ( navigator.whatBrowser.name == 'Opera Mini' ) {
-			window.location = '/outdated/'
-		}
-	</script>
+		var str = navigator.userAgent;
+		var ins = str.indexOf('Instagram');
+		var android = str.match(/Android/i);
+		var fcb = str.indexOf('FBAV');
+		if ( (android) && ((fcb != -1) || (ins != -1)) ) {}
+			else {
+				if ( navigator.whatBrowser == 'IE' ) {
+					window.location = '/outdated/'
+				}
+				else if ( navigator.whatBrowser.name == 'Chrome' && navigator.whatBrowser.version < 57 ) {
+					window.location = '/outdated/'
+				}
+				else if ( navigator.whatBrowser.name == 'Firefox' && navigator.whatBrowser.version < 52 ) {
+					window.location = '/outdated/'
+				}
+				else if ( navigator.whatBrowser.name == 'Opera' && navigator.whatBrowser.version < 44 ) {
+					window.location = '/outdated/'
+				}
+				else if ( navigator.whatBrowser.name == 'Safari' && navigator.whatBrowser.version < 10.1 ) {
+					window.location = '/outdated/'
+				}
+				else if ( navigator.whatBrowser.name == 'Opera Mini' ) {
+					window.location = '/outdated/'
+				}
+			}
+		</script>
 
 	<script src="https://api-maps.yandex.ru/2.1/?apikey=0b3dbbe1-a6ac-4753-ae36-c6eea46e0748&lang=ru_RU"
 		type="text/javascript"></script>
@@ -98,7 +109,7 @@
 			<div class="main-window-bg">
 				<!-- <img src="images/dist/main-bg.jpg" alt=""> -->
 				<!-- <div class="pattern-bg"></div> -->
-				<video src="video/main-video.mp4" autoplay muted="muted" loop></video>
+				<video src="video/main-video.mp4" poster="images/src/adw-img-2.jpg" autoplay muted="muted" loop></video>
 				<video src="video/main-video-blur.mp4" class="blured-video" autoplay muted="muted" loop></video>
 			</div>
 
@@ -188,11 +199,11 @@
 
 					<div class="adw-img-bg">
 						<div class="adw-img-main-wrapper">
-							<img src="images/src/adw-img-1.jpg" class="adw-img-main" alt="">
+							<img src="images/src/adw-img-1.jpg" class="adw-img-main" width="1920" height="1080" alt="">
 						</div>
 						<div class="adw-img-bg-blur">
 							<div class="adw-img-bg-blur-sticky">
-								<img src="images/src/adw-img-1-blur.jpg" class="adw-img-blur" alt="">
+								<img src="images/src/adw-img-1-blur.jpg" class="adw-img-blur" width="1920" height="1080" alt="">
 								<div class="adw-img-qnts">
 									<div class="adw-img-banner"
 										style="top: 24.17%; right: 18.5%; width: 45.5%; height: 21.7%">
@@ -301,11 +312,11 @@
 
 					<div class="adw-img-bg">
 						<div class="adw-img-main-wrapper">
-							<img src="images/src/adw-img-2.jpg" class="adw-img-main" alt="">
+							<img src="images/src/adw-img-2.jpg" class="adw-img-main" width="1920" height="1080" alt="">
 						</div>
 						<div class="adw-img-bg-blur">
 							<div class="adw-img-bg-blur-sticky">
-								<img src="images/src/adw-img-2-blur.jpg" class="adw-img-blur" alt="">
+								<img src="images/src/adw-img-2-blur.jpg" class="adw-img-blur" width="1920" height="1080" alt="">
 								<div class="adw-img-qnts">
 									<div class="adw-img-banner"
 										style="top: 18.17%; right: 33.5%; width: 14.7%; height: 32.7%">

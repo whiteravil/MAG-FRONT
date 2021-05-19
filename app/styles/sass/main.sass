@@ -133,8 +133,9 @@ h3, .h3
 	align-items: flex-end
 	flex-grow: 1
 	padding: rem(55px) 0 rem(85px)
+	top: 0
+	will-change: height
 	&.fixed
-		top: 0
 		position: fixed
 		height: rem(331px)
 		@media screen and ( max-width:968px )
@@ -273,6 +274,7 @@ h3, .h3
 	align-items: flex-end
 	justify-content: flex-start
 	right: rem(120px)
+	will-change: right, left, width
 	@media screen and ( max-width:968px )
 		bottom: 6rem
 	@media screen and ( max-width:767px )
@@ -284,6 +286,7 @@ h3, .h3
 	// @media screen and ( max-width:380px )
 	// 	bottom: 10rem
 	.logo
+		transform: translateZ(0)
 		transform: scale(0.243056)
 		will-change: transform
 		backface-visibility: hidden
@@ -352,6 +355,7 @@ h3, .h3
 		background-color: #fff
 		transition: transform .7s ease
 		transform-origin: left top
+		transform: translateZ(0)
 		transform: scaleX(0)
 		will-change: transform
 		backface-visibility: hidden
@@ -367,6 +371,7 @@ h3, .h3
 			overflow: hidden
 			span
 				display: block
+				transform: translateZ(0)
 				transform: translateY(100%)
 				transition: transform .7s ease-in-out
 				transition-delay: .15s
@@ -406,6 +411,7 @@ h3, .h3
 		transform-origin: left top
 		transform: scaleX(0)
 		transition-delay: .3s
+		will-change: transform
 	p
 		width: calc(50% - #{rem(45px)})
 		margin: 0
@@ -413,6 +419,7 @@ h3, .h3
 		opacity: 0
 		transition: all .7s ease
 		transition-delay: .4s
+		will-change: opacity, transform
 		@media screen and ( max-width:1024px )
 			width: calc(50% - #{rem(15px)})
 		@media screen and ( max-width:576px )
@@ -433,6 +440,7 @@ h3, .h3
 	z-index: 0
 	user-select: none
 	will-change: transform
+	transform: translateZ(0)
 	backface-visibility: hidden
 	@media screen and ( max-width:576px )
 		left: -28rem
@@ -503,6 +511,7 @@ h3, .h3
 .adw-img-main
 	width: 100%
 	top: 0
+	height: auto
 	position: sticky
 	@media screen and ( max-width:767px )
 		height: 100vh
@@ -543,6 +552,7 @@ h3, .h3
 		width: 100%
 		opacity: 0
 		will-change: opacity
+		transform: translateZ(0)
 		backface-visibility: hidden
 
 .adw-content
@@ -642,6 +652,7 @@ h3, .h3
 		transition: transform 2s ease
 		transition-delay: .75s
 		will-change: transform
+		transform: translateZ(0)
 		backface-visibility: hidden
 		b
 			font-weight: normal
@@ -661,6 +672,7 @@ h3, .h3
 		left: 0
 		width: 100%
 		will-change: width, opacity
+		transform: translateZ(0)
 		backface-visibility: hidden
 		.adw-banner-size-line
 			display: block
@@ -693,6 +705,7 @@ h3, .h3
 		height: 100%
 		transition-delay: 1.5s
 		will-change: width, opacity
+		transform: translateZ(0)
 		backface-visibility: hidden
 		.adw-banner-size-line
 			display: block
@@ -724,6 +737,7 @@ h3, .h3
 .adw-img-qnts
 	transition: opacity .25s ease
 	opacity: 1
+	// transform: translateZ(0)
 	// will-change: opacity
 	@media screen and ( max-width: 1024px )
 		display: none !important
@@ -734,6 +748,7 @@ h3, .h3
 	transition-delay: 2s
 	will-change: opacity
 	backface-visibility: hidden
+	// transform: translateZ(0)
 
 .adw-banner-visibility-line
 	height: 1px
@@ -1050,6 +1065,7 @@ h3, .h3
 .numbers-facts-wrapper-big-nmb-value
 	transform-origin: 78% 30%
 	will-change: transform
+	transform: translateZ(0)
 	backface-visibility: hidden
 	@media screen and ( max-width:576px )
 		transform: none !important
@@ -1122,6 +1138,7 @@ h3, .h3
 	opacity: 0
 	transform: translateY(20px)
 	will-change: transform, opacity
+	transform: translateZ(0)
 	backface-visibility: hidden
 	&:last-child
 		margin-bottom: 0
@@ -1149,6 +1166,7 @@ h3, .h3
 		font-size: 16px
 		width: 100% !important
 		margin: 0 0 35px !important
+
 .s-clients
 	background-color: #fff
 	padding: rem(80px) 0 rem(110px)
@@ -1176,6 +1194,7 @@ h3, .h3
 			transform-origin: top left
 			transform: scaleX(0)
 			transition-delay: .5s
+			will-change: transform
 			@media screen and ( max-width:767px )
 				transform: none !important
 		.h6, .h2
@@ -1190,6 +1209,9 @@ h3, .h3
 					transition-delay: .15s
 					@media screen and ( max-width:767px )
 						transform: none !important
+
+.slick-track
+	will-change: transform
 
 .clients-wrapper
 	overflow: hidden
@@ -1290,6 +1312,7 @@ h3, .h3
 .team-person
 	transition: transform .4s ease, opacity .4s ease
 	opacity: 0
+	transform: translateZ(0)
 	transform: translateY(20px)
 	will-change: transform, opacity
 	backface-visibility: hidden
@@ -1327,6 +1350,7 @@ h3, .h3
 		background-color: #fff
 		width: 100%
 		transform-origin: top left
+		transform: translateZ(0)
 		transform: scaleX(0)
 		transition: transform .4s ease
 		transition-delay: 1.5s
@@ -1396,6 +1420,7 @@ h3, .h3
 		span
 			span
 				will-change: transform
+				transform: translateZ(0)
 				backface-visibility: hidden
 
 .contacts-row
@@ -1483,6 +1508,7 @@ h3, .h3
 .contacts-form-wrapper
 	transition: transform .4s ease, opacity .4s ease
 	opacity: 0
+	transform: translateZ(0)
 	transform: translateY(20px)
 	will-change: transform, opacity
 	backface-visibility: hidden
@@ -2163,3 +2189,6 @@ textarea.form-control
 	img
 		width: 24px
 		flex-shrink: 0
+
+.adw-img-blur
+	height: auto

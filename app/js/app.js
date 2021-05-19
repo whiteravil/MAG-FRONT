@@ -86,7 +86,7 @@ function init() {
 					// scaleDynamicCoef = proport * (logoRowWidth - logoWidth) + logoWidth,
 					blurPX = proport * 25;
 			logoBlock.removeClass('no-fixed');
-			$('.logo-block .logo').css('transform', `scale(${scaleDynamicCoef})`)
+			logo.css('transform', `scale(${scaleDynamicCoef})`)
 			// logo.css('width', `${scaleDynamicCoef}`);
 			// $('.main-window-bg').get(0).style.setProperty('--main-window-blur', `${blurPX}px`);
 			bluredVideo.css('opacity', scrTop / menuTop);
@@ -138,19 +138,21 @@ function init() {
 
 	let adwWrapper = $('.adw-wrapper');
 
-	function adwScroll(scrTop) {
+	adwWrapper.each(function() {
 
-		adwWrapper.each(function () {
+		let ths = $(this),
+				top = ths.offset().top,
+				mainImg = ths.find('.adw-img-main'),
+				height = ths.outerHeight(),
+				blurBlock = ths.find('.adw-img-bg-blur'),
+				blur = blurBlock.find('img'),
+				content = ths.find('.adw-content'),
+				blurHeight = blur.outerHeight();
 
-			let ths = $(this),
-					top = ths.offset().top,
-					mainImg = ths.find('.adw-img-main'),
-					height = ths.outerHeight(),
-					blurBlock = ths.find('.adw-img-bg-blur'),
-					blur = blurBlock.find('img'),
-					content = ths.find('.adw-content'),
-					blurHeight = blur.outerHeight(),
-					blurOpacity = (scrTop - top) / (height - blurHeight - windowDOMHeight);
+		console.log(blurHeight)
+
+		function adwScroll(scrTop) {
+			let blurOpacity = (scrTop - top) / (height - blurHeight - windowDOMHeight);
 			if (windowWidth <= 767) {
 				if (scrTop >= top && scrTop < top + height) {
 					let imgSCale = 1 + blurOpacity * 3;
@@ -173,11 +175,19 @@ function init() {
 
 				}
 			}
+		}
 
+		adwScroll(windowTop);
 
-		});
+		windowDOM.on('scroll', function () {
 
-	}
+			let scrTop = windowDOM.scrollTop();
+
+			adwScroll(scrTop);
+
+		})
+
+	});
 
 	let numbersFactsWrapper = $('.numbers-facts-wrapper'),
 		numbersFactsWrapperTop = numbersFactsWrapper.offset().top,
@@ -207,8 +217,6 @@ function init() {
 
 	}
 
-	adwScroll(windowTop);
-
 	let sClientsHeight = sClients.outerHeight();
 
 	$('.clients-block').each(function (i) {
@@ -229,7 +237,7 @@ function init() {
 		// }
 		// startSlider();
 
-		tape.slick({
+		tape.not('.slick-initialized').slick({
 			infinite: true,
 			arrows: false,
 			dots: false,
@@ -295,8 +303,6 @@ function init() {
 		else {
 			sContacts.removeClass('animate')
 		}
-
-		adwScroll(scrTop);
 
 		scaleNmb(scrTop);
 
