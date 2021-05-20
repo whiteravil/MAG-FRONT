@@ -149,8 +149,6 @@ function init() {
 				content = ths.find('.adw-content'),
 				blurHeight = blur.outerHeight();
 
-		console.log(blurHeight)
-
 		function adwScroll(scrTop) {
 			let blurOpacity = (scrTop - top) / (height - blurHeight - windowDOMHeight);
 			if (windowWidth <= 767) {
@@ -166,12 +164,13 @@ function init() {
 				if (scrTop >= top && scrTop < top + height) {
 
 					if (blurOpacity <= 1) {
-						blur.attr('style', `opacity: ${blurOpacity}`);
 						blurBlock.removeClass('animate')
 					}
 					else if (blurOpacity > 1) {
 						blurBlock.addClass('animate')
 					}
+
+					blur.attr('style', `opacity: ${blurOpacity > 1 ? 1 : blurOpacity}`);
 
 				}
 			}
@@ -190,10 +189,10 @@ function init() {
 	});
 
 	let numbersFactsWrapper = $('.numbers-facts-wrapper'),
-		numbersFactsWrapperTop = numbersFactsWrapper.offset().top,
-		numbersFactsWrapperHeight = numbersFactsWrapper.outerHeight(),
-		numbersBigImg = $('.numbers-facts-wrapper-big-nmb-value'),
-		numbersFactsItem = $('.numbers-facts-item');
+			numbersFactsWrapperTop = numbersFactsWrapper.offset().top,
+			numbersFactsWrapperHeight = numbersFactsWrapper.outerHeight(),
+			numbersBigImg = $('.numbers-facts-wrapper-big-nmb-value'),
+			numbersFactsItem = $('.numbers-facts-item');
 
 	function scaleNmb(scrTop) {
 
@@ -355,9 +354,10 @@ function init() {
 		$('.popup-wrapper').removeClass('opened');
 		setTimeout(() => {
 			$('.popup-wrapper').hide();
-			$('.video-popup-block').html('');
+			$('.video-popup-content').html('');
 		}, 400);
 		bodyHasScroll();
+		$('.video-popup-content video')[0].pause()
 	}
 
 	documentDOM.on('click', '.open-popup', function (e) {
@@ -410,6 +410,16 @@ function init() {
 	$('.mobile-menu-close').on('click', function() {
 		$('.mobile-menu').removeClass('opened');
 		bodyHasScroll();
+	});
+
+	$('.open-video-popup').on('click', function(e) {
+		e.preventDefault();
+		let ths = $(this),
+				videoSrc = ths.data('video-src'),
+				title = ths.parents('.adw-content-text').find('.h3').text();
+		$('.video-popup-block .popup-header').text(title);
+		$('.video-popup-content').html(`<video src="${videoSrc}" autoplay muted="muted" loop controls=></video>`);
+		openPopup('#video-popup');
 	});
 
 }
